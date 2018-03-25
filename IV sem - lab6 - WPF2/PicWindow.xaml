@@ -1,0 +1,55 @@
+﻿<Window x:Class="IV_sem___lab6___WPF2.PicWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IV_sem___lab6___WPF2"
+        mc:Ignorable="d"
+        Title="PicWindow" 
+        WindowStartupLocation="CenterScreen"
+        Width="Auto" Height="Auto" SizeToContent="WidthAndHeight"
+    >
+    <Window.Resources>
+        <Style x:Key="imageInfoExpanderStyle" TargetType="Expander">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="BorderBrush" Value="DarkGray" />
+        </Style>
+        <Style x:Key="pluginExpanderStyle" TargetType="Expander">
+            <Setter Property="Background" Value="Green" />
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="BorderBrush" Value="DarkGreen" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="250"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel LastChildFill="False" Margin="10">
+            <Expander Name="imageDataExpander" DockPanel.Dock="Top"
+                      Header="Image Information"
+                      DataContext="{Binding ImageUri, RelativeSource={RelativeSource AncestorType=Window}}"
+                      Style="{StaticResource imageInfoExpanderStyle}"
+                      Content="{Binding}"
+                      ContentTemplate="">
+                      
+            </Expander>
+            <Expander Name="pluginExpander" DockPanel.Dock="Top"
+                      Header="Plugins"
+                      Style="{StaticResource pluginExpanderStyle}">
+                      
+            </Expander>
+        </DockPanel>
+        
+        <Image Name="image" Grid.Column="1" Margin="10"
+               Source="{Binding ImageUri, RelativeSource={RelativeSource AncestorType=Window}}"
+                Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+                Width="{Binding SystemParameters.PrimaryScreenWidth}"
+               />
+    </Grid>
+</Window>
